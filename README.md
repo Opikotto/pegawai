@@ -9,7 +9,6 @@ tech :
 
 Setup :
 - git clone https://github.com/Opikotto/pegawai.git or download zip
-- open npm install
 - open terminal run ng serve
 - open terminal run json-server --watch ./src/app/employee.json
 
