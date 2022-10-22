@@ -1,5 +1,17 @@
 # Pegawai
 
+tech : 
+- Angular 14
+- Tailwind Css
+- Json server 
+- sweetalert 
+
+Setup :
+- git clone https://github.com/Opikotto/pegawai.git or download zip
+- open terminal run ng serve
+- open terminal run json-server --watch ./src/app/employee.json
+
+run 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
 
 ## Development server
