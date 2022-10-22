@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" class="toolbar-emp">
+     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+     <mat-icon>people</mat-icon>
+     </button>
+     <span>Employee Database</span>
+ </mat-toolbar>
+ <div style="width: 500px; margin: auto; margin-top:20px;">
+     <div class="title-group">
+         <h1 class="mat-h1">Employee Detail</h1>
+         <mat-divider fxFlex="1 0"></mat-divider>
+     </div>
+     <mat-card class="example-card">
+         <mat-card-content>
+             <mat-card-subtitle>Full Name</mat-card-subtitle>
+             <mat-card-title>{{ detailEmployee?.firstName }} {{ detailEmployee?.lastName }}</mat-card-title>
+             <mat-card-subtitle>User Name</mat-card-subtitle>
+             <mat-card-title>{{ detailEmployee?.username }}</mat-card-title>
+             <mat-card-subtitle>Email</mat-card-subtitle>
+             <mat-card-title>{{ detailEmployee?.email }}</mat-card-title>
+             <mat-card-subtitle>Birth Date</mat-card-subtitle>
+             <mat-card-title>{{ detailEmployee?.birthDate }}</mat-card-title>
+             <mat-card-subtitle>Basic Salary</mat-card-subtitle>
+             <mat-card-title>{{ detailEmployee?.basicSalary | currency:'Rp. ' }}</mat-card-title>
+             <mat-card-subtitle>Status</mat-card-subtitle>
+             <mat-card-title>{{ detailEmployee?.status }}</mat-card-title>
+             <mat-card-subtitle>Group</mat-card-subtitle>
+             <mat-card-title>{{ detailEmployee?.group }}</mat-card-title>
+             <mat-card-subtitle>Description</mat-card-subtitle>
+             <mat-card-title>{{ detailEmployee?.description }}</mat-card-title>
+         </mat-card-content>
+         <mat-card-actions>
+           <button mat-raised-button class="btn bg-red-500 text-white" routerLink="/employeelist">BACK</button>
+         </mat-card-actions>
+     </mat-card>
+ </div>
+ 
+   <router-outlet></router-outlet>

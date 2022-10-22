@@ -1,0 +1,110 @@
+<mat-toolbar color="primary" class="toolbar-emp">
+     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+     <mat-icon>people</mat-icon>
+     </button>
+     <span>Employee Database</span>
+ </mat-toolbar>
+ <div style="width: 500px; margin: auto; margin-top:40px;" class="container">
+     <div class="title-group">
+         <h1 class="mat-h1">Add New Employee</h1>
+         <mat-divider fxFlex="1 0"></mat-divider>
+     </div>
+     <form [formGroup]="addFormData" #addForm="ngForm">
+         <mat-card>
+             <mat-form-field appearance="outline">
+                 <mat-label>Username</mat-label>
+                 <input matInput formControlName="username" placeholder="Username" autocomplete="false" minlength="5" maxlength="15">    
+             </mat-form-field>
+             <div *ngIf="addFormData.get('username')?.touched">
+                 <div *ngIf="addFormData.get('username')?.hasError('required')" class="mt-2 text-sm text-red-600 dark:text-red-500">Username is required!</div>
+                 <div *ngIf="addFormData.get('username')?.hasError('minlength')" class="mt-2 text-sm text-red-600 dark:text-red-500">Username at least need 5 character</div>
+             </div>
+             <br>
+             <mat-form-field appearance="outline">
+                 <mat-label>First Name</mat-label>
+                 <input matInput formControlName="firstName" placeholder="Your First Name" class="fname">
+             </mat-form-field>
+             <div *ngIf="addFormData.get('firstName')?.touched">
+                 <div *ngIf="addFormData.get('firstName')?.hasError('required')" class="mt-2 text-sm text-red-600 dark:text-red-500"> First Name is required!</div>
+             </div>
+             <mat-form-field appearance="outline">
+                 <mat-label>Last Name</mat-label>
+                 <input matInput formControlName="lastName" placeholder="Your Last Name" class="lname">
+             </mat-form-field>
+             <div *ngIf="addFormData.get('lastName')?.touched">
+                 <div *ngIf="addFormData.get('lastName')?.hasError('required')" class="mt-2 text-sm text-red-600 dark:text-red-500"> Last Name is required!</div>
+             </div>
+             <br>
+             <mat-form-field appearance="outline">
+                 <mat-label>Email</mat-label>
+                 <input matInput formControlName="email" placeholder="Your Email" type="email">
+             </mat-form-field>
+             <div *ngIf="addFormData.get('email')?.touched">
+                 <div *ngIf="addFormData.get('email')?.hasError('required')"  class="mt-2 text-sm text-red-600 dark:text-red-500">
+                     Email is required!
+                 </div>
+                 <div *ngIf="addFormData.get('email')?.hasError('email')"  class="mt-2 text-sm text-red-600 dark:text-red-500">
+                     Please Enter a valid email!
+                 </div>
+             </div>
+             <br>
+             <div class="form-floating mb-3">
+                 <input type="date" class="form-control" id="floatingInput" placeholder="birth date" formControlName="birthDate" max="{{ maxDate }}">
+             </div>
+             <div *ngIf="addFormData.get('birthDate')?.touched">
+                 <div *ngIf="addFormData.get('birthDate')?.hasError('required')" class="mt-2 text-sm text-red-600 dark:text-red-500"> Birth Date is required!</div>
+             </div>
+             <br>
+             <mat-form-field appearance="outline">
+                 <mat-label>Basic Salary</mat-label>
+                 <input matInput currencyMask [(ngModel)]="basicSalary" formControlName="basicSalary" [options]="{ prefix: 'Rp ', thousands: '.', decimal: ',' }" />
+             </mat-form-field>
+             <div *ngIf="addFormData.get('basicSalary')?.touched">
+                 <div *ngIf="addFormData.get('basicSalary')?.hasError('required')" class="mt-2 text-sm text-red-600 dark:text-red-500"> Basic Salary is required!</div>
+                 <div *ngIf="addFormData.get('basicSalary')?.hasError('min')" class="mt-2 text-sm text-red-600 dark:text-red-500"> Basic Salary minimum Rp 1.000.000</div>
+             </div>
+             <br>
+             <mat-form-field appearance="outline">
+                 <mat-label>Status</mat-label>
+                 <mat-select [(value)]="selected" formControlName="status">
+                     <mat-option>None</mat-option>
+                     <mat-option value="Permanent">Permanent Employee</mat-option>
+                     <mat-option value="Contract">Contract Employee</mat-option>
+                 </mat-select>
+             </mat-form-field>
+             <div *ngIf="addFormData.get('status')?.touched">
+                 <div *ngIf="addFormData.get('status')?.hasError('required')" class="mt-2 text-sm text-red-600 dark:text-red-500"> Status is required!</div>
+             </div>
+             <mat-form-field appearance="outline" *ngIf="groupformControl">
+                 <mat-label>Group</mat-label>
+                 <mat-select [formControl]="group" formControlName="group" ngDefaultControl #grouplist noEntriesFoundLabel="Not Found">
+                     <mat-option>
+                         <ngx-mat-select-search [formControl]="groupformControl" placeholderLabel="Select a Group.."></ngx-mat-select-search>
+                     </mat-option>
+                     <mat-option *ngFor="let option of options | async" [value]="option.name">
+                         {{option.name}}
+                     </mat-option>
+                 </mat-select>
+             </mat-form-field>
+             <div *ngIf="addFormData.get('group')?.touched">
+                 <div *ngIf="addFormData.get('group')?.hasError('required')" class="mt-2 text-sm text-red-600 dark:text-red-500"> Group is required!</div>
+             </div> 
+             <br>
+             <div class="form-floating mb-3">
+                 <input type="date" class="form-control" id="floatingInput" formControlName="description" max="{{ maxDate }}">
+             </div>
+             <div *ngIf="addFormData.get('description')?.touched">
+                 <div *ngIf="addFormData.get('description')?.hasError('required')" class="mt-2 text-sm text-red-600 dark:text-red-500"> Description is required!</div>
+             </div>
+         </mat-card>
+         <mat-card>
+             <div class="full-wrapper button-wrapper">
+               <div class="button-wrapper" [align]="'end'">
+                 <button mat-raised-button class="btn btn-danger" style="margin-right:5px" routerLink="/employeelist">Cancel</button>
+                 <button mat-raised-button class="btn btn-primary" (click)="add()" [disabled]="addForm.form.invalid">Submit</button>
+               </div>
+             </div>
+         </mat-card>
+     </form>
+ </div>
+ <router-outlet></router-outlet>
