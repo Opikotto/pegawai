@@ -5,6 +5,7 @@ tech :
 - Tailwind Css
 - Json server 
 - sweetalert 
+- Material UI
 
 Setup :
 - git clone https://github.com/Opikotto/pegawai.git or download zip
